@@ -77,6 +77,12 @@ Créer un Webhook sur GitHub :
 
 ### Étape 5 : Notifications de Résultats
 
-1- Configurer les notifications par email :
-2- Allez dans "Manage Jenkins" > "Configure System".
-3- Sous "Extended E-mail Notification", configurez le serveur SMTP et les paramètres nécessaires (comme décrit dans la réponse précédente).
+1- Configurer les notifications par channel discord :
+2- Création serveur discord
+3-  dans la pipeline:       success {
+            // Send Discord message on success
+            sh '''
+                curl -H "Content-Type: application/json" \
+                -X POST \
+                -d '{"content": "SUCCESS: Build ${env.BUILD_NUMBER} succeeded."}' \
+                ${DISCORD_WEBHOOK_URL}
