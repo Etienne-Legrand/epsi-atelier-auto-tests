@@ -7,9 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,6 +24,15 @@ class BookPersistenceTest {
 
     private static final String BOOKS_FILE_PATH = "booksPersistence.json";
 
+    @TestConfiguration
+    static class BookServiceTestConfig {
+        @Bean
+        @Primary
+        public BookService bookService() {
+            return new BookService(BOOKS_FILE_PATH);
+        }
+    }
+
     @BeforeEach
     void setUp() {
         // Clean up before each test
@@ -29,6 +40,7 @@ class BookPersistenceTest {
         if (file.exists()) {
             file.delete();
         }
+        bookService = new BookService(BOOKS_FILE_PATH);
     }
 
     @AfterEach
@@ -41,22 +53,22 @@ class BookPersistenceTest {
     }
 
     @Test
-    void testPersistenceBetweenRestarts() throws IOException {
+    void testPersistenceBetweenRestarts() {
         // Create and save 2 books
         Book book1 = createPersistentBook();
         Book book2 = createPersistentBook();
         bookService.createBook(book1);
         bookService.createBook(book2);
 
-        // Verify the book is saved
+        // Verify the books are saved
         List<Book> booksBeforeRestart = bookService.getAllBooks();
         assertEquals(2, booksBeforeRestart.size());
         assertEquals("Persistent Book", booksBeforeRestart.get(0).getBookname());
 
         // Simulate application restart by reloading the service
-        bookService = new BookService();
+        bookService = new BookService(BOOKS_FILE_PATH);
 
-        // Verify the book is still present after restart
+        // Verify the books are still present after restart
         List<Book> booksAfterRestart = bookService.getAllBooks();
         assertEquals(2, booksAfterRestart.size());
         assertEquals("Persistent Book", booksAfterRestart.get(0).getBookname());

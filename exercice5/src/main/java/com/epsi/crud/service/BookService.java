@@ -14,17 +14,25 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    private static final String BOOKS_FILE_PATH = "books.json";
+    private static final String DEFAULT_BOOKS_FILE_PATH = "books.json";
+    private String booksFilePath;
     private List<Book> books = new ArrayList<>();
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public BookService() {
+     // Constructor with custom file path
+     public BookService(String booksFilePath) {
+        this.booksFilePath = booksFilePath;
         loadBooks();
+    }
+
+    // Default constructor
+    public BookService() {
+        this(DEFAULT_BOOKS_FILE_PATH);
     }
 
     private void loadBooks() {
         try {
-            File file = new File(BOOKS_FILE_PATH);
+            File file = new File(booksFilePath);
             if (file.exists()) {
                 books = objectMapper.readValue(file, new TypeReference<List<Book>>() {});
             }
@@ -35,7 +43,7 @@ public class BookService {
 
     private void saveBooks() {
         try {
-            objectMapper.writeValue(new File(BOOKS_FILE_PATH), books);
+            objectMapper.writeValue(new File(booksFilePath), books);
         } catch (IOException e) {
             e.printStackTrace();
         }
