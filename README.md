@@ -93,13 +93,15 @@ Créer un Webhook sur GitHub :
 
 2- Création serveur discord
 
-3-  dans la pipeline:       success {
+3-  dans la pipeline: 
+  ```
+        success {
             // Send Discord message on success
             sh '''
                 curl -H "Content-Type: application/json" \
                 -X POST \
                 -d '{"content": "SUCCESS: Build ${env.BUILD_NUMBER} succeeded."}' \
                 ${DISCORD_WEBHOOK_URL}
-
-                ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/452da218-1275-4064-a72d-25d6cdc2144e)
+  ```
+  ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/452da218-1275-4064-a72d-25d6cdc2144e)
 
