@@ -65,15 +65,18 @@ Créer un Webhook sur GitHub :
 ### Étape 3 : Configuration du Pipeline Jenkins
 
 1- Allez dans "New Item" > "Pipeline".
+
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/9b60343e-44ce-48f7-b0e9-554dfe0c3596)
 
 2- Donnez un nom à votre pipeline et cliquez sur "OK".
+
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/30f4a1c1-4972-42a4-8164-4181ccd45769)
 
 3- Configurer le pipeline :
 - Dans la configuration du pipeline, sous "Pipeline", choisissez "Pipeline script".
 - Sélectionnez "Git" et renseignez l'URL de votre repository.
 - Spécifiez la branche à construire (par exemple, */main).
+  
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/9be470e9-8a49-4e69-9118-39dd69ee71df)
 
 ### Étape 4 : Configuration des Agents de Build
