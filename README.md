@@ -106,6 +106,16 @@ cd ./spring-petclinic
 java -jar .\target\spring-petclinic-3.3.0-SNAPSHOT.jar
 
 ```
+ou
 
+```
+cd ./spring-petclinic
+mvn spring-boot:run
+```
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93679283/f25cf46d-0575-4788-8a76-514aabc26cfd)
+
+Résultat de l'execution avec JMeter de ce plan de test ([petclinic_test_plan.jmx](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/blob/main/exercice9/spring-petclinic/src/test/jmeter/petclinic_test_plan.jmx)) :
+![Screenshot from 2024-06-24 11-54-27](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/84561654/0a43df29-05ac-4cd9-8d33-fe037029926d)
+
+
 
