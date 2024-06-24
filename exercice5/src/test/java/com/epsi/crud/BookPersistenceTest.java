@@ -20,7 +20,7 @@ class BookPersistenceTest {
     @Autowired
     private BookService bookService;
 
-    private static final String BOOKS_FILE_PATH = "books.json";
+    private static final String BOOKS_FILE_PATH = "booksPersistence.json";
 
     @BeforeEach
     void setUp() {
