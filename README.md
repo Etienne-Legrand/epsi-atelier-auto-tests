@@ -96,3 +96,16 @@ On obtient ce message dans discord à la fin de l'exécution du pipeline.
 
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/452da218-1275-4064-a72d-25d6cdc2144e)
 
+## Exercice 9 (Java)
+
+Exécution 
+
+```
+cd ./spring-petclinic
+./mvnw package
+java -jar .\target\spring-petclinic-3.3.0-SNAPSHOT.jar
+
+```
+
+![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93679283/f25cf46d-0575-4788-8a76-514aabc26cfd)
+
