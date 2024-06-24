@@ -22,7 +22,7 @@ On a utilisé Jupyter Notebook.
 
 ### Prérequis :
 
-- Jenkins installé et configuré.
+- Jenkins installé et configuré avec docker ([exercice8/jenkins/docker-compose.yml](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/blob/main/exercice8/docker-compose.yml))
 - Accès administrateur à Jenkins.
 - Un repository GitHub avec votre application Java.
 - Java et Maven installés sur les agents de build.
@@ -48,6 +48,10 @@ Créer un Webhook sur GitHub :
 4. Sélectionnez application/json comme "Content type".
 5. Sélectionnez les événements à surveiller (par exemple, Just the push event).
 6. Cliquez sur "Add webhook".
+
+![Screenshot from 2024-06-24 10-34-45](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/84561654/372602f4-0299-4318-89b4-fd8620a3218e)
+
+![Screenshot from 2024-06-24 10-35-12](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/84561654/e0098ff0-4575-4426-89c1-026d309166d2)
 
 ### Étape 3 : Configuration du Pipeline Jenkins
 
@@ -79,15 +83,16 @@ Configurer les notifications par channel discord :
 2. Créer un webhook discord pour ce serveur
 2. Dans le script de la pipeline on a ajouter ça pour le succès : 
   ```
-        success {
-            // Send Discord message on success
-            sh '''
-                curl -H "Content-Type: application/json" \
-                -X POST \
-                -d '{"content": "SUCCESS: Build succeeded."}' \
-                ${DISCORD_WEBHOOK_URL}
+  success {
+  // Send Discord message on success
+  sh '''
+  curl -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"content": "SUCCESS: Build succeeded."}' \
+  ${DISCORD_WEBHOOK_URL}
   ```
 
 On obtient ce message dans discord à la fin de l'exécution du pipeline.
+
 ![image](https://github.com/Etienne-Legrand/epsi-atelier-auto-tests/assets/93017364/452da218-1275-4064-a72d-25d6cdc2144e)
 
